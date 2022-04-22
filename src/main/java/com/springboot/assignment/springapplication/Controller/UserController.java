@@ -2,7 +2,6 @@ package com.springboot.assignment.springapplication.Controller;
 
 import com.springboot.assignment.springapplication.entity.Authority;
 import com.springboot.assignment.springapplication.entity.User;
-import com.springboot.assignment.springapplication.service.AuthorityService;
 import com.springboot.assignment.springapplication.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCrypt;
@@ -13,7 +12,6 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import javax.persistence.Column;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -22,8 +20,6 @@ import java.util.List;
 public class UserController {
 
 
-    @Autowired
-    private AuthorityService authorityService;
     private UserService userService;
 
 

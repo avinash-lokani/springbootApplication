@@ -9,7 +9,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.util.List;
-import java.util.Scanner;
 
 @Controller
 @RequestMapping("/get")
@@ -27,7 +26,6 @@ public class GetCustomersController {
         List<Customer> customers = customerService.findAll();
 
         model.addAttribute("customers",customers);
-        System.out.println(customers.get(1).getItems());
         return "customer-list";
     }
 

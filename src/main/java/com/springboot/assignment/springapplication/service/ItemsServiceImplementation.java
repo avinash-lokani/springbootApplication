@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.logging.Logger;
 
 @Service
 public class ItemsServiceImplementation implements ItemsService {
@@ -23,18 +24,20 @@ public class ItemsServiceImplementation implements ItemsService {
     }
 
     @Override
-    public Item findById(int id) {
+    public Item findById(int id) throws RuntimeException {
         Optional<Item> result = itemsDAO.findById(id);
-
+        Logger logger = Logger.getLogger(ItemsServiceImplementation.class.getName());
         Item items = null;
 
-        if (result.isPresent()) {
-            items = result.get();
+        try{
+            if (result.isPresent()) {
+                items = result.get();
+            }
+
+        }catch (Exception e){
+            logger.info(e.getMessage());
         }
-        else {
-            // we didn't find the employee
-            throw new RuntimeException("Did not find employee id - " + id);
-        }
+
 
         return items;
     }

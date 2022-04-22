@@ -5,7 +5,6 @@ import com.springboot.assignment.springapplication.service.ItemsService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
@@ -17,6 +16,7 @@ public class ItemsController {
 
     private ItemsService itemsService;
 
+    private String form = "items-form";
 
     public ItemsController(ItemsService itemsService) {
         this.itemsService = itemsService;
@@ -28,7 +28,6 @@ public class ItemsController {
         List<Item> itemList = itemsService.findAll();
 
         model.addAttribute("items",itemList);
-        System.out.println(itemList);
         return "list-items";
     }
 
@@ -36,7 +35,7 @@ public class ItemsController {
     public String showFormForAdd(Model model){
         Item item = new Item();
         model.addAttribute("item",item);
-        return "items-form";
+        return form;
     }
 
     @PostMapping("/save")
@@ -45,7 +44,7 @@ public class ItemsController {
 
         if(bindingResult.hasErrors()){
             model.addAttribute("item",item);
-            return "items-form";
+            return form;
         }
         else {
             itemsService.save(item);
@@ -58,8 +57,7 @@ public class ItemsController {
                                     Model model){
         Item item = itemsService.findById(id);
         model.addAttribute("item",item);
-        System.out.println(item);
-        return "items-form";
+        return form;
     }
 
     @GetMapping("/delete")

@@ -1,8 +1,6 @@
 package com.springboot.assignment.springapplication.Controller;
 
-import com.springboot.assignment.springapplication.entity.Customer;
 import com.springboot.assignment.springapplication.entity.Item;
-import com.springboot.assignment.springapplication.service.CustomerService;
 import com.springboot.assignment.springapplication.service.ItemsService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -38,7 +36,6 @@ public class CustomerController {
 
         Item item = itemsService.findById(item_id);
         model.addAttribute("item",item);
-        System.out.println(item);
 
         return "customer-conformation";
     }
