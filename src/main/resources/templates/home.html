@@ -19,21 +19,54 @@
     <div sec:authorize="hasRole('ROLE_ADMIN')">
         <tr>
             <td>
-                <a  href="/get/customers" class="btn btn-info btn-sm">customers list</a>
+                <a  href="/customers/list" class="btn btn-info btn-sm">customers list</a>
 
             </td>
         </tr>
     </div>
     <tr>
         <td>
-            <a  href="/items/list" class="btn btn-info btn-sm"
-                sec:authorize="hasRole('ROLE_ADMIN')">items list</a>
-        </td>
-    </tr>
-    <tr>
-        <td>
-            <a  href="/customer/list"  class="btn btn-info btn-sm"
-                sec:authorize="hasAnyRole('ROLE_ADMIN','ROLE_USER')">Buy items</a>
+
+            <div class="container">
+
+                <h3>Items List</h3>
+                <hr>
+                <table class="table table-bordered table-striped">
+                    <thead class="thead-dark">
+                    <tr>
+                        <th>Item Name</th>
+
+                        <th>Price</th>
+                        <th>Action</th>
+                    </tr>
+                    </thead>
+
+                    <tbody>
+                    <tr th:each = "tempItem:${items}">
+                        <td th:text = "${tempItem.name}" />
+
+                        <td th:text = "${tempItem.price}" />
+                        <td>
+                            <a th:href="@{/items/list/addCart(itemId=${tempItem.id})}"
+                               class="btn btn-info btn-sm">
+                                Add to cart
+                            </a>
+                            <a th:href="@{/items/showFromForUpdate(itemId=${tempItem.id})}"
+                               class="btn btn-info btn-sm" sec:authorize="hasRole('ROLE_ADMIN')">
+                                Update
+                            </a>
+                            <a th:href="@{/items/delete(itemId=${tempItem.id})}"
+                               class="btn btn-danger btn-sm"
+                               onclick="if(!(confirm('Are you sure you want to delete the Item ?')))return false" sec:authorize="hasRole('ROLE_ADMIN')">
+                                Delete
+                            </a>
+                        </td>
+                    </tr>
+                    </tbody>
+
+                </table>
+
+            </div>
         </td>
     </tr>
     </tbody>

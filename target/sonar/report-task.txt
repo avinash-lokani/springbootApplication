@@ -1,0 +1,7 @@
+organization=avinash-lokani
+projectKey=com.springboot.assignment:springapplication
+serverUrl=https://sonarcloud.io
+serverVersion=8.0.0.28518
+dashboardUrl=https://sonarcloud.io/dashboard?id=com.springboot.assignment%3Aspringapplication
+ceTaskId=AYBkdz5t0L0BKAxMk-Vt
+ceTaskUrl=https://sonarcloud.io/api/ce/task?id=AYBkdz5t0L0BKAxMk-Vt

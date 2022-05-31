@@ -1,7 +1,10 @@
 package com.springboot.assignment.springapplication.Controller;
 
+import com.springboot.assignment.springapplication.converter.ItemsConverter;
+import com.springboot.assignment.springapplication.dto.ItemDto;
 import com.springboot.assignment.springapplication.entity.Item;
 import com.springboot.assignment.springapplication.service.ItemsService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -16,6 +19,9 @@ public class ItemsController {
 
     private ItemsService itemsService;
 
+    @Autowired
+    private ItemsConverter converter;
+
     private String form = "items-form";
 
     public ItemsController(ItemsService itemsService) {
@@ -27,28 +33,32 @@ public class ItemsController {
 
         List<Item> itemList = itemsService.findAll();
 
-        model.addAttribute("items",itemList);
+        List<ItemDto> itemDtoList = converter.itemEntityToDto(itemList);
+
+        model.addAttribute("items",itemDtoList);
         return "list-items";
     }
 
     @GetMapping("/showFormForAdd")
     public String showFormForAdd(Model model){
-        Item item = new Item();
-        model.addAttribute("item",item);
+        ItemDto itemDto = new ItemDto();
+
+        model.addAttribute("item",itemDto);
         return form;
     }
 
     @PostMapping("/save")
-    public String save(@Valid @ModelAttribute("item") Item item,
+    public String save(@Valid @ModelAttribute("item") ItemDto itemDto,
                        BindingResult bindingResult,Model model){
 
         if(bindingResult.hasErrors()){
-            model.addAttribute("item",item);
+            model.addAttribute("item",itemDto);
             return form;
         }
         else {
+            Item item = converter.itemDtoToEntity(itemDto);
             itemsService.save(item);
-            return "redirect:/items/list";
+            return "redirect:/";
         }
     }
 
@@ -63,7 +73,11 @@ public class ItemsController {
     @GetMapping("/delete")
     public String delete(@RequestParam("itemId") int id){
         itemsService.deleteById(id);
+        return "redirect:/";
+    }
 
-        return "redirect:/items/list";
+    @GetMapping("/access-denied")
+    public String accessDenied(){
+        return "access-denied";
     }
 }

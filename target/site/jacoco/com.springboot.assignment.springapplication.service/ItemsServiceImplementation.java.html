@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>ItemsServiceImplementation.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">springapplication</a> &gt; <a href="index.source.html" class="el_package">com.springboot.assignment.springapplication.service</a> &gt; <span class="el_source">ItemsServiceImplementation.java</span></div><h1>ItemsServiceImplementation.java</h1><pre class="source lang-java linenums">package com.springboot.assignment.springapplication.service;
+
+
+import com.springboot.assignment.springapplication.dao.ItemsRepository;
+import com.springboot.assignment.springapplication.entity.Item;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
+import java.util.List;
+import java.util.Optional;
+import java.util.logging.Logger;
+
+@Service
+public class ItemsServiceImplementation implements ItemsService {
+
+    private ItemsRepository itemsDAO;
+
+<span class="fc" id="L18">    public ItemsServiceImplementation(ItemsRepository itemsDAO) {</span>
+<span class="fc" id="L19">        this.itemsDAO = itemsDAO;</span>
+<span class="fc" id="L20">    }</span>
+
+    @Transactional
+    @Override
+    public List&lt;Item&gt; findAll() {
+<span class="fc" id="L25">        return itemsDAO.findAll();</span>
+    }
+
+    @Transactional
+    @Override
+    public Item findById(int id) throws RuntimeException {
+<span class="fc" id="L31">        Optional&lt;Item&gt; result = itemsDAO.findById(id);</span>
+<span class="fc" id="L32">        Logger logger = Logger.getLogger(ItemsServiceImplementation.class.getName());</span>
+<span class="fc" id="L33">        Item items = null;</span>
+
+<span class="pc bpc" id="L35" title="1 of 2 branches missed.">        if (result.isPresent()) {</span>
+<span class="fc" id="L36">            items = result.get();</span>
+        }
+        else {
+<span class="nc" id="L39">            logger.info(&quot;can not find item with id =&quot;+id);</span>
+        }
+
+
+<span class="fc" id="L43">        return items;</span>
+    }
+    @Transactional
+    @Override
+    public void save(Item item) {
+<span class="fc" id="L48">        itemsDAO.save(item);</span>
+<span class="fc" id="L49">    }</span>
+    @Transactional
+    @Override
+    public void deleteById(int id) {
+<span class="fc" id="L53">        itemsDAO.deleteById(id);</span>
+<span class="fc" id="L54">    }</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.6.202009150832</span></div></body></html>

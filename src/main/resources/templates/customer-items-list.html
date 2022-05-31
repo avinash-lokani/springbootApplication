@@ -34,7 +34,7 @@
 
             <td th:text = "${tempItem.price}" />
             <td>
-                <a th:href="@{/customer/buy(itemId=${tempItem.id})}"
+                <a th:href="@{/customers/items/list/buy(itemId=${tempItem.id})}"
                    class="btn btn-info btn-sm">
                     Buy
                 </a>

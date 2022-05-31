@@ -2,7 +2,8 @@ package com.springboot.assignment.springapplication.service;
 
 import com.springboot.assignment.springapplication.dao.ItemsRepository;
 import com.springboot.assignment.springapplication.entity.Item;
-import org.junit.Test;
+
+import org.junit.jupiter.api.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -18,7 +19,7 @@ import static org.mockito.Mockito.*;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
-public class TestItemsService {
+class TestItemsService {
 
     @Autowired
     private ItemsService itemsService;
@@ -27,7 +28,7 @@ public class TestItemsService {
     private ItemsRepository itemsRepository;
 
     @Test
-    public void findAll(){
+     void findAll(){
         when(itemsRepository.findAll()).thenReturn(Stream.of(new Item(1,"pen",20),
                 new Item(2,"book",50),
                 new Item(3,"chocolate",30),
@@ -37,7 +38,7 @@ public class TestItemsService {
     }
 
     @Test
-    public void findById(){
+     void findById(){
         Item item = new Item(1,"pen",20);
 
         when(itemsRepository.findById(1)).thenReturn(Optional.of(item));
@@ -46,7 +47,7 @@ public class TestItemsService {
     }
 
     @Test
-    public void save(){
+     void save(){
         Item item = new Item("pen",20);
         itemsService.save(item);
         when(itemsRepository.findById(6)).thenReturn(Optional.of(item));
@@ -54,7 +55,7 @@ public class TestItemsService {
     }
 
     @Test
-    public void delete(){
+     void delete(){
         itemsService.deleteById(1);
         verify(itemsRepository, times(1)).deleteById(1);
     }

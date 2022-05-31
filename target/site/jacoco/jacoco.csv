@@ -1,0 +1,17 @@
+GROUP,PACKAGE,CLASS,INSTRUCTION_MISSED,INSTRUCTION_COVERED,BRANCH_MISSED,BRANCH_COVERED,LINE_MISSED,LINE_COVERED,COMPLEXITY_MISSED,COMPLEXITY_COVERED,METHOD_MISSED,METHOD_COVERED
+springapplication,com.springboot.assignment.springapplication.entity,Authority,153,0,24,0,11,0,24,0,12,0
+springapplication,com.springboot.assignment.springapplication.entity,Item,149,44,25,1,5,13,24,4,11,4
+springapplication,com.springboot.assignment.springapplication.entity,Customer,216,28,40,0,8,9,34,2,14,2
+springapplication,com.springboot.assignment.springapplication.entity,User,112,81,22,10,2,10,23,7,7,7
+springapplication,com.springboot.assignment.springapplication.config,DemoSecurityConfig,0,72,0,0,0,19,0,3,0,3
+springapplication,com.springboot.assignment.springapplication.config,SecurityWebApplicationInitializer,3,0,0,0,1,0,1,0,1,0
+springapplication,com.springboot.assignment.springapplication.Controller,CustomerController,23,6,0,0,6,3,2,1,2,1
+springapplication,com.springboot.assignment.springapplication.Controller,UserController,43,6,0,0,11,3,2,1,2,1
+springapplication,com.springboot.assignment.springapplication.Controller,GetCustomersController,15,6,0,0,4,3,2,1,2,1
+springapplication,com.springboot.assignment.springapplication.Controller,ItemsController,59,9,2,0,16,4,6,1,5,1
+springapplication,com.springboot.assignment.springapplication.Controller,MainController,2,3,0,0,1,1,1,1,1,1
+springapplication,com.springboot.assignment.springapplication.Controller,LoginController,4,3,0,0,2,1,2,1,2,1
+springapplication,com.springboot.assignment.springapplication.service,CustomerServiceImplementation,0,10,0,0,0,4,0,2,0,2
+springapplication,com.springboot.assignment.springapplication.service,UserServiceImplementation,0,12,0,0,0,5,0,2,0,2
+springapplication,com.springboot.assignment.springapplication.service,ItemsServiceImplementation,4,44,1,1,1,14,1,5,0,5
+springapplication,com.springboot.assignment.springapplication,SpringapplicationApplication,5,3,0,0,2,1,1,1,1,1
